@@ -1,18 +1,21 @@
 export const products = [
   {
-    name: 'Phone XL',
-    price: 799,
-    description: 'A large phone with one of the best screens'
+    name: 'BMW',
+    price: 3800000,
+    description: 'New model 2019',
+    plate: 'JKL-215'
   },
   {
     name: 'Phone Mini',
     price: 699,
-    description: 'A great phone with one of the best cameras'
+    description: 'A great phone with one of the best cameras',
+    plate: 'A large phone with one of the best screens'
   },
   {
     name: 'Phone Standard',
     price: 299,
-    description: 'A standard phone, so basic'
+    description: 'A standard phone, so basic',
+    plate: 'A large phone with one of the best screens'
   }
 ];
 

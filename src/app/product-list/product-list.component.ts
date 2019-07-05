@@ -8,10 +8,15 @@ import { products } from '../products';
   styleUrls: ['./product-list.component.sass']
 })
 export class ProductListComponent {
+  
   products = products;
 
   share() {
     window.alert('El producto ha sido compartido');
+  }
+
+  onNotify() {
+    window.alert('El producto exede un valor de 700');
   }
 }
 
