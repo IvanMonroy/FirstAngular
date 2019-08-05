@@ -1,8 +1,22 @@
-<a [routerLink]="['/']">
+<a [routerLink]="['/']" class="col-8" >
   <h1>Tienda de vehículos</h1>
 </a>
+<div class="col-2">
+  <a  (click)="getItems()" class="button fancy-button"><i class="material-icons">shopping_cart</i>
+    <span style="
+  color: #37ce18;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+">
+      Mi carrito
 
-<a [routerLink]="['/cart']" class="button fancy-button"><i class="material-icons">shopping_cart</i>Cambiar</a>
+    </span>
+  </a>
+</div>
+<div class="col-2">
+  <a [routerLink]="['/cart']" class="button fancy-button"><i class="material-icons">directions_car</i>Cambiar</a>
+</div>
 
 <!-- 
 Copyright Google LLC. All Rights Reserved.

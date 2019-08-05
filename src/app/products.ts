@@ -1,20 +1,20 @@
 export const products = [
   {
-    id: 1,
+    id: 8,
     name: 'BMW',
     price: 3800000,
     description: 'New model 2019',
     plate: 'JKL-215'
   },
   {
-    id: 2,
+    id: 1,
     name: 'Phone Mini',
     price: 699,
     description: 'A great phone with one of the best cameras',
     plate: 'A large phone with one of the best screens'
   },
   {
-    id: 3,
+    id: 2,
     name: 'Phone Standard',
     price: 299,
     description: 'A standard phone, so basic',
