@@ -20,10 +20,13 @@
     <!--       <button (click)="share()">
                 Compartir
               </button>
+              (notify)="onNotify()" --  Después de [product]="product"
     -->
               <app-product-alerts
       [product]="product"
-      (notify)="onNotify()">
+    
+            > 
+         
     </app-product-alerts>
     </div>
 
