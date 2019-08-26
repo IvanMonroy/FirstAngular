@@ -13,7 +13,7 @@ import { CartService } from '../cart.service'
 })
 export class ProductDetailsComponent implements OnInit { title = 'app'
 product: any;
-restItemsUrl = 'http://powerful-brushlands-67246.herokuapp.com/api/vehicles/:id';
+restItemsUrl: any;
   
 addToCart(product) {
     window.alert('Vehículo añadido al carrito!');
@@ -28,7 +28,8 @@ addToCart(product) {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-
+      this.restItemsUrl = 'http://powerful-brushlands-67246.herokuapp.com/api/vehicles/:id';
+      console.log(this.restItemsUrl);
       this.product = products.find((obj) => (obj.id == parseInt(params.get('id'))));
 
 
