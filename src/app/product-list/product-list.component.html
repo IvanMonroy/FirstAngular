@@ -1,29 +1,37 @@
 <h2>Nuestros productos</h2>
- 
-<div *ngFor="let product of products">
- 
-  <h3>
-    <a [title]="product.name + ' details'" [routerLink]="['/vehicles', product.id]">
-      {{ product.name }}
-    </a>
-  </h3>
- 
-  <p *ngIf="product.description">
-    Descripción: {{ product.description }}
-  </p>
-  <p *ngIf="product.price">
-        Precio: {{ product.price }}
+
+<div *ngIf="undefined === products">Loading...</div>
+
+<div *ngIf="undefined !== products">
+    <div *ngFor="let product of products['data']" >
+      <h3>
+        <a [title]="product.brand + ' details'" [routerLink]="['/vehicles', product.id]">
+          {{ product.brand }}
+        </a>
+      </h3>
+     
+      <p *ngIf="product.brand">
+        Placa: {{ product.brand }}
       </p>
+      <p *ngIf="product.year">
+            Año: {{ product.year }}
+          </p>
+    
+          <button (click)="share()">
+                Compartir
+              </button>
+    
+              <app-product-alerts
+      [product]="product"
+      (notify)="onNotify()">
+    </app-product-alerts>
+    </div>
 
-      <button (click)="share()">
-            Compartir
-          </button>
+</div> 
 
-          <app-product-alerts
-  [product]="product"
-  (notify)="onNotify()">
-</app-product-alerts>
-</div>
+
+
+
 <!-- 
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that

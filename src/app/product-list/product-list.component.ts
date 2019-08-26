@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 import { products } from '../products';
 
@@ -7,17 +9,33 @@ import { products } from '../products';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent {
-  
-  products = products;
 
-  share() {
-    window.alert('El producto ha sido compartido');
-  }
+export class ProductListComponent   { title = 'app';
+products: any;
+restItemsUrl = 'http://powerful-brushlands-67246.herokuapp.com/api/vehicles';
 
-  onNotify() {
-    window.alert('El producto exede un valor de 700');
-  }
+constructor(private http: HttpClient) {}
+
+ngOnInit() {
+  this.getRestItems();
+}
+
+// Read all REST Items
+getRestItems(): void {
+  this.restItemsServiceGetRestItems()
+    .subscribe(
+      products => {
+        this.products = products;
+      }
+    )
+}
+
+// Rest Items Service: Read all REST Items
+restItemsServiceGetRestItems() {
+  return this.http
+    .get<any[]>(this.restItemsUrl)
+    .pipe(map(data => data));
+}
 }
 
 
