@@ -12,7 +12,7 @@ import { ProductAlertsComponent } from './product-alerts/product-alerts.componen
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
-import { HttpModule } from '@angular/http';
+/*import { HttpModule } from '@angular/http'; */
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { HttpModule } from '@angular/http';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    HttpModule,
+  /*  HttpModule, */
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
       { path: 'vehicles/:id', component: ProductDetailsComponent },
