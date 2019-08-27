@@ -126,6 +126,19 @@ app-top-bar h1 {
     background-color: #EEEEEE;
 }
 
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+.error {
+    color: red;
+}
+.success {
+    color: green;
+} 
+
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";

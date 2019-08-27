@@ -1,6 +1,6 @@
 <h2>Nuestros productos</h2>
 
-<div *ngIf="undefined === products">Loading...</div>
+<div *ngIf="undefined === products">Cargando...</div>
 
 <div *ngIf="undefined !== products">
     <div *ngFor="let product of products['data']" >

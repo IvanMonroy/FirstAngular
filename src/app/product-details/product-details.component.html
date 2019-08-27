@@ -1,10 +1,8 @@
 <h2>Detalle del Vehículo</h2>
-
-<div *ngIf="product">
-  <h3>{{ product.name }}</h3>
-  <h4>{{ product.price | currency }}</h4>
-  <p>{{ product.description }}</p>
-
-  <button (click)="addToCart(product)"> Añadir al carrito </button>
-
+<div *ngIf="undefined === product">Cargando...</div>
+<div *ngIf="undefined !== product">
+  <h3>{{ product.data.brand }}</h3>
+  <h4>{{ product.data.year }}</h4>
+  <p>{{ product.data.plate }}</p>
+  <button [routerLink]="['/vehicles']" (click)="deleteRegister(product.data.id)"> Eliminar </button>
 </div>
