@@ -61,6 +61,7 @@ export class ProductFormComponent implements OnInit {
       },
       err => {
         console.log(err);
+        window.alert(err.error.errors[0]);
       }
     );
   }
