@@ -13,6 +13,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductFormService } from './product-form.service';
 /*import { HttpModule } from '@angular/http'; */
 
 
@@ -44,8 +45,13 @@ import { ProductFormComponent } from './product-form/product-form.component';
     ProductDetailsComponent,
     CartComponent,
     ShippingComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    
   ],
+  providers: [
+    ProductFormService,
+],
+
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
