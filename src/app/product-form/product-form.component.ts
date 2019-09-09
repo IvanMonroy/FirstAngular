@@ -132,7 +132,6 @@ export class ProductFormComponent implements OnInit {
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
-      debugger;
       this.openSnackBar(error.error.errors[0]);
     }
 
