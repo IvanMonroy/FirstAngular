@@ -1,4 +1,4 @@
-<h2>Nuestros productos</h2>
+<h2>Vehículos Registrados</h2>
 
 <div *ngIf="undefined === products">Cargando...</div>
 
@@ -11,7 +11,7 @@
       </h3>
      
       <p *ngIf="product.brand">
-        Placa: {{ product.brand }}
+        Placa: {{ product.plate }}
       </p>
       <p *ngIf="product.year">
             Año: {{ product.year }}

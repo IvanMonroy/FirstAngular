@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MAT_SNACK_BAR_DATA} from '@angular/material';
 
 import { Observable, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
@@ -24,21 +26,50 @@ const httpOptions = {
 export class ProductFormComponent implements OnInit {
   dataSaved = false;
   productForm: FormGroup;
-  allProducts: Product[]
-
+  allProducts: Product[];
+  durationInSeconds = 5;
+  restItemsUrl: any;
+  messages: any;
+  data: any;
   constructor(
     private formBuilder: FormBuilder,
-    private productService: ProductFormService
+    private productService: ProductFormService,
+    private _snackBar: MatSnackBar,
+    private http: HttpClient,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.restItemsUrl = 'http://powerful-brushlands-67246.herokuapp.com/api/vehicles/' + parseInt(params.get('id'));
+      if (params.get('id') && params.get('brand') ){
+        this.data = params['params'];
+      };
+
+    });
     this.productForm = this.formBuilder.group({
-      plate: ['', [Validators.required]],
-      brand: ['', [Validators.required]],
-      year: ['', [Validators.required]]
+      plate: [this.data ? this.data.plate : '', [Validators.required]],
+      brand: [this.data ? this.data.brand : '', [Validators.required]],
+      year:  [this.data ? this.data.year : '' , [Validators.required]]
     });
     this.loadAllProducts();
     //this.saveProduct();
+  }
+  openSnackBar(message: string) {
+    this._snackBar.openFromComponent(PizzaPartyComponent, {
+      duration: this.durationInSeconds * 1000,
+      data: {message: message},
+      
+    });
+  }
+
+  updateRegister(id, product) {
+    product = this.productForm.value;
+    this.UpdateItem(id, product).subscribe(
+      message => {
+        this.openSnackBar(message['message']);
+      });
+
   }
   onFormSubmit() {
     this.dataSaved = false;
@@ -54,21 +85,20 @@ export class ProductFormComponent implements OnInit {
   }
   createProduct(product: Product) {
     this.productService.createProduct(product).subscribe(
-      product => {
-        console.log(product);
+      mssg => {
         this.dataSaved = true;
         this.loadAllProducts();
+        this.messages = mssg['message']
+        this.openSnackBar(this.messages);
       },
       err => {
-        console.log(err);
-        window.alert(err.error.errors[0]);
+        this.openSnackBar(err.error.errors[0]);
       }
     );
   }
   loadAllProducts() {
     this.productService.getAllProduct().subscribe(({ data }) => {
-      console.log(data);
-      this.allProducts = data
+     this.allProducts = data
     });
   }
   get plate() {
@@ -80,27 +110,51 @@ export class ProductFormComponent implements OnInit {
   get year() {
     return this.productForm.get('year');
   }
-  saveProduct() {
-    console.log("Save product()" + this.brand.value + this.plate.value + this.year.value);
-    /*  let product = {id: 99, plate: 'JOJ-678',
-    brand: 'Hiunday', year: 2009};
-    this.productService.postProduct(product).subscribe(res => { 
-         let artcl: Product = res.body;
-         console.log(artcl.plate);
-         console.log(res.headers.get('Content-Type'));		
-         this.loadAllProducts();	  
-       },
-  (err: HttpErrorResponse) => {
-         if (err.error instanceof Error) {
-           //A client-side or network error occurred.				 
-           console.log('An error occurred:', err.error.message);
-         } else {
-           //Backend returns unsuccessful response codes such as 404, 500 etc.				 
-           console.log('Backend returned status code: ', err.status);
-           console.log('Response body:', err.error);
-         }
-       }
-    );*/
-  };
 
+      // Rest Items Service: Update register
+
+      UpdateItem(id: number, product: Product): Observable<{}> {
+        return this.http
+          .put(this.restItemsUrl, product, httpOptions)
+          .pipe(
+            (data) => data,
+            catchError((e) => this.handleError(e))
+          );
+      }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+      debugger;
+      this.openSnackBar(error.error.errors[0]);
+    }
+
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+}
+
+@Component({
+  selector: 'snack-bar-component-example-snack',
+  templateUrl: 'snack-bar-component-example-snack.html',
+  styles: [`
+  .mat-snack-bar-container{
+    background: hotpink;
+  }
+    .example-pizza-party {
+      color: #ce1818;
+    }
+  `],
+})
+export class PizzaPartyComponent {
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: "xd") { }
+  
 }

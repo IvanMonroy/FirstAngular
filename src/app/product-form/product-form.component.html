@@ -1,13 +1,54 @@
-<h3>Crear Vehículo</h3>
-<p *ngIf="dataSaved && productForm.pristine" ngClass="success">
-	Vehiculo creado éxitosamente.
-</p>
-<form [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
+<h3 *ngIf="undefined === data">Crear Vehículo</h3>
+<h3 *ngIf="undefined !== data" >Editar Vehículo</h3>
+
+<form *ngIf="undefined === data" [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
+		<table>
+			<tr>
+				<td>Placa: </td>
+				<td>
+					<input formControlName="plate" >
+					<div *ngIf="plate.dirty && plate.errors" class="error">
+						<div *ngIf="plate.errors.required">
+							Placa requerida.
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>Marca: </td>
+				<td>
+					<input formControlName="brand" >
+					<div *ngIf="brand.dirty && brand.errors" class="error">
+						<div *ngIf="brand.errors.required">
+							Marca requerida.
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>Año: </td>
+				<td>
+					<input formControlName="year" >
+					<div *ngIf="year.dirty && year.errors" class="error">
+						<div *ngIf="year.errors.required">
+							Año requerido.
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button [disabled]="productForm.invalid">Submit</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+<form *ngIf="undefined !== data" [formGroup]="productForm" (ngSubmit)="updateRegister(data.id) ">
 	<table>
 		<tr>
 			<td>Placa: </td>
 			<td>
-				<input formControlName="plate">
+				<input formControlName="plate" >
 				<div *ngIf="plate.dirty && plate.errors" class="error">
 					<div *ngIf="plate.errors.required">
 						Placa requerida.
@@ -18,7 +59,7 @@
 		<tr>
 			<td>Marca: </td>
 			<td>
-				<input formControlName="brand">
+				<input formControlName="brand" >
 				<div *ngIf="brand.dirty && brand.errors" class="error">
 					<div *ngIf="brand.errors.required">
 						Marca requerida.
@@ -29,7 +70,7 @@
 		<tr>
 			<td>Año: </td>
 			<td>
-				<input formControlName="year">
+				<input formControlName="year" >
 				<div *ngIf="year.dirty && year.errors" class="error">
 					<div *ngIf="year.errors.required">
 						Año requerido.
@@ -39,14 +80,15 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button [disabled]="productForm.invalid">Submit</button>
+				<button  [routerLink]="['/vehicles']" [disabled]="productForm.invalid">Submit</button>
 			</td>
 		</tr>
 	</table>
 </form>
-<h3>Detalles del vehículo</h3>
-<p *ngFor="let product of allProducts">
+<div class="col-8">
+<h3>También te pueden interesar:</h3>
+<p *ngFor="let product of allProducts"  [routerLink]="['/vehicles', product.id]" id="links-cursor">
 	{{product.id}} | {{product.plate}} |
 	{{product.brand}} | {{product.year}}
 </p>
-
+</div>

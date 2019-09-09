@@ -13,8 +13,14 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { PizzaPartyComponent } from './product-form/product-form.component';
 import { ProductFormService } from './product-form.service';
 /*import { HttpModule } from '@angular/http'; */
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import {MatSnackBarModule} from "@angular/material";
+import {MatInputModule} from '@angular/material';
+
 
 
 
@@ -24,6 +30,8 @@ import { ProductFormService } from './product-form.service';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    FormsModule,MatSnackBarModule,MatInputModule,
   /*  HttpModule, */
 
     RouterModule.forRoot([
@@ -33,7 +41,7 @@ import { ProductFormService } from './product-form.service';
       { path: 'cart', component: CartComponent },
       { path: 'shipping', component: ShippingComponent },
       { path: 'new_vehicle', component: ProductFormComponent },
-
+      { path: 'edit_vehicles/:id/:brand/:year/:plate', component: ProductFormComponent },
     ]),
     BrowserAnimationsModule
   ],
@@ -46,11 +54,14 @@ import { ProductFormService } from './product-form.service';
     CartComponent,
     ShippingComponent,
     ProductFormComponent,
+    PizzaPartyComponent,
     
   ],
   providers: [
     ProductFormService,
 ],
+exports: [PizzaPartyComponent],
+entryComponents: [PizzaPartyComponent],
 
   bootstrap: [ AppComponent ]
 })
