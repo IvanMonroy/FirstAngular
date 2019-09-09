@@ -43,7 +43,7 @@
 			</tr>
 		</table>
 	</form>
-<form *ngIf="undefined !== data" [formGroup]="productForm" (ngSubmit)="updateRegister(data.id) ">
+<form *ngIf="undefined !== data" [formGroup]="productForm" (ngSubmit)="updateRegister(data.id, null) ">
 	<table>
 		<tr>
 			<td>Placa: </td>

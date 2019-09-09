@@ -155,6 +155,6 @@ export class ProductFormComponent implements OnInit {
   `],
 })
 export class PizzaPartyComponent {
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: "xd") { }
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) { }
   
 }
