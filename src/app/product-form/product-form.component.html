@@ -43,7 +43,7 @@
 			</tr>
 		</table>
 	</form>
-<form *ngIf="undefined !== data" [formGroup]="productForm" (ngSubmit)="updateRegister(data.id, null) ">
+<form *ngIf="undefined !== data" [formGroup]="productForm" (ngSubmit)="updateRegister(data.id) ">
 	<table>
 		<tr>
 			<td>Placa: </td>
@@ -80,7 +80,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button  [routerLink]="['/vehicles']" [disabled]="productForm.invalid">Submit</button>
+				<button [disabled]="productForm.invalid">Submit</button>
 			</td>
 		</tr>
 	</table>

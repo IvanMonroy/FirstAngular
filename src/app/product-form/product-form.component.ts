@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
@@ -37,6 +37,7 @@ export class ProductFormComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private http: HttpClient,
     private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -63,12 +64,14 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  updateRegister(id, product) {
-    product = this.productForm.value;
+  updateRegister(id) {
+   var product = this.productForm.value;
+   console.log(id + product);
     this.UpdateItem(id, product).subscribe(
       message => {
         this.openSnackBar(message['message']);
       });
+      this.router.navigate(['/vehicles'])
 
   }
   onFormSubmit() {
@@ -120,6 +123,7 @@ export class ProductFormComponent implements OnInit {
             (data) => data,
             catchError((e) => this.handleError(e))
           );
+          
       }
 
   private handleError(error: HttpErrorResponse) {
