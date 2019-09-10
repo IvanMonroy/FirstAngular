@@ -2,18 +2,11 @@
   <h1>Parqueadero HRS</h1>
 </a>
 <div class="col-2">
-  <a  (click)="getItems()" class="button fancy-button"><i class="material-icons">shopping_cart</i>
+  <a [routerLink]="['/new_vehicle']" class="button fancy-button"><i class="material-icons">fiber_new</i>
     <span class="button_default" >
-      Mi carrito
-
+      Nuevo Vehículo
     </span>
-  </a>
-</div>
-<div class="col-2">
-  <a [routerLink]="['/cart']" class="button fancy-button"><i class="material-icons">directions_car</i>Listado</a>
-</div>
-<div class="col-2">
-  <a [routerLink]="['/new_vehicle']" class="button fancy-button"><i class="material-icons">fiber_new</i>Nuevo Vehículo</a>
+    </a>
 </div>
 
 <!-- 

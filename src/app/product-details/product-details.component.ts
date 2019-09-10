@@ -5,9 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_SNACK_BAR_DATA } from '@angular/material';
-
 import { products } from '../products';
-import { CartService } from '../cart.service'
 import { Observable, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { PizzaPartyComponent } from '../product-form/product-form.component';
@@ -31,10 +29,6 @@ export class ProductDetailsComponent implements OnInit {
   restItemsUrl: any;
   durationInSeconds = 5;
 
-  addToCart(product) {
-    this.openSnackBar('Vehículo añadido al carrito!');
-    this.cartService.addToCart(product);
-  }
 
   deleteRegister(id) {
     this.deleteRestItem(id).subscribe(
@@ -47,7 +41,6 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    private cartService: CartService,
     private _snackBar: MatSnackBar
 
   ) { }

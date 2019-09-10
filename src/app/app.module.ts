@@ -10,8 +10,6 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { CartComponent } from './cart/cart.component';
-import { ShippingComponent } from './shipping/shipping.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { PizzaPartyComponent } from './product-form/product-form.component';
 import { ProductFormService } from './product-form.service';
@@ -38,8 +36,6 @@ import {MatInputModule} from '@angular/material';
       { path: '', component: ProductListComponent },
       { path: 'vehicles/:id', component: ProductDetailsComponent },
       { path: 'vehicles', component: ProductListComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'shipping', component: ShippingComponent },
       { path: 'new_vehicle', component: ProductFormComponent },
       { path: 'edit_vehicles/:id/:brand/:year/:plate', component: ProductFormComponent },
     ]),
@@ -51,8 +47,6 @@ import {MatInputModule} from '@angular/material';
     ProductListComponent,
     ProductAlertsComponent,
     ProductDetailsComponent,
-    CartComponent,
-    ShippingComponent,
     ProductFormComponent,
     PizzaPartyComponent,
     
