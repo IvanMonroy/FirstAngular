@@ -133,7 +133,7 @@ table, th, td {
     border: 1px solid black;
 }
 .error {
-    color: red;
+    color:  #ce1818;
 }
 .success {
     color: green;
@@ -144,3 +144,6 @@ table, th, td {
 @import "~bootstrap/scss/mixins";
 
 @import "~bootstrap/scss/grid";
+
+
+

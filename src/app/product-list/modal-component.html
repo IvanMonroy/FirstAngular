@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Datos del vehículo.</h1>
+<form *ngIf="undefined === data" [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
+<div mat-dialog-content>
+    <p>Placa:</p>
+    <mat-form-field>
+        <input matInput formControlName="plate" autocomplete="off">
+    </mat-form-field>
+    <p>Marca:</p>
+    <mat-form-field>
+        <input matInput formControlName="brand" autocomplete="off">
+    </mat-form-field>
+    <p>Año:</p>
+    <mat-form-field>
+        <input matInput formControlName="year" autocomplete="off">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button  cdkFocusInitial>Guardar</button>
+</div>
+</form>
+
+<form *ngIf="undefined !== data"  [formGroup]="productForm" (ngSubmit)="updateRegister(data.id)">
+        <div mat-dialog-content>
+            <p>Placa:</p>
+            <mat-form-field>
+                <input matInput formControlName="plate" autocomplete="off">
+            </mat-form-field>
+            <p>Marca:</p>
+            <mat-form-field>
+                <input matInput formControlName="brand" autocomplete="off">
+            </mat-form-field>
+            <p>Año:</p>
+            <mat-form-field>
+                <input matInput formControlName="year" autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button  cdkFocusInitial>Guardar</button>
+        </div>
+        </form>

@@ -1,36 +1,68 @@
-<h2>Vehículos Registrados</h2>
+<h1>Vehículos Registrados</h1>
 
-<div *ngIf="undefined === products">Cargando...</div>
+<div class="row">
+  <div class="col-3">
+    <mat-form-field appearance="legacy">
+      <mat-label>Buscar por placa</mat-label>
+      <input matInput [formControl]="filter" placeholder="Filter states..." autocomplete="off">
+    </mat-form-field>
+  </div>
 
-<div *ngIf="undefined !== products">
-    <div *ngFor="let product of products['data']" >
-      <h3>
-        <a [title]="product.brand + ' details'" [routerLink]="['/vehicles', product.id]">
-          {{ product.brand }}
-        </a>
-      </h3>
-     
-      <p *ngIf="product.brand">
-        Placa: {{ product.plate }}
-      </p>
-      <p *ngIf="product.year">
-            Año: {{ product.year }}
-          </p>
-    
-    <!--       <button (click)="share()">
-                Compartir
-              </button>
-              (notify)="onNotify()" --  Después de [product]="product"
-    -->
-              <app-product-alerts
-      [product]="product"
-    
-            > 
-         
-    </app-product-alerts>
-    </div>
+  <div class="col-5">
+      <mat-radio-group class="example-radio-group" (change)="onChange($event)" name="info">
+          <mat-radio-button class="example-radio-button" value="0"> Sin filtros </mat-radio-button>
+          <mat-radio-button class="example-radio-button" value="1"> Con entradas </mat-radio-button>
+          <mat-radio-button class="example-radio-button" value="2"> Sin entradas </mat-radio-button>
+        </mat-radio-group>  
+  </div>
 
-</div> 
+  <div class="col-3">
+    <button mat-icon-button aria-label="Example icon-button with a heart icon" >
+      <mat-icon style="color: #ce1818;">add_circle</mat-icon>
+      <span style="color: #ce1818;" (click)="openDialog()">Nuevo vehículo</span>
+    </button>
+  </div>
+</div>
+
+
+<div *ngIf="undefined === vehiclesFiltered">
+  <mat-progress-spinner mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+
+
+
+
+<div *ngIf="undefined !== vehiclesFiltered" class="row">
+  <div *ngFor="let product of vehiclesFiltered | async" class="col-4">
+    <mat-card class="example-card w-100">
+      <mat-card-header class="col">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['/vehicles']" (click)="deleteRegister(product.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar vehículo</span>
+          </button>
+          <button mat-menu-item
+            [routerLink]="['/edit_vehicles', product.id,product.brand, product.year, product.plate ]">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+        </mat-menu>
+        <div mat-card-avatar [routerLink]="['/vehicles', product.id]" style="cursor: pointer;"
+          class="example-header-image"></div>
+        <mat-card-title [routerLink]="['/vehicles', product.id]" style="cursor: pointer;"> {{ product.brand }}
+        </mat-card-title>
+        <mat-card-subtitle id="a">{{ product.plate }}</mat-card-subtitle>
+        <mat-card-subtitle id="b">{{ product.year }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+</div>
+
+
 
 
 

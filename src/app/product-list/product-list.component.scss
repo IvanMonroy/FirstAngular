@@ -19,3 +19,44 @@
         pointer-events: none;
     }
 }
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container > * {
+    width: 100%;
+}
+
+.example-radio-group {
+    display: -webkit-box;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.example-radio-button {
+    margin: 5px;
+}
+
+.example-card {
+    margin: 4px;
+    background-color: white;
+}
+
+.example-header-image {
+    background-image: url("https://images.khaleejtimes.com/storyimage/KT/20190820/ARTICLE/190819096/AR/0/AR-190819096.jpg&MaxW=780&imageVersion=16by9&NCS_modified=&exif=.jpg");
+    background-size: cover;
+}
+
+#a {
+    color: #ce1818;
+}
+
+#b {
+    color: #b5adad;
+}
+
+::ng-deep.mat-card-header-text{
+  flex: auto;
+}

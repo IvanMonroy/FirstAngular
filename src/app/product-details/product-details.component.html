@@ -1,11 +1,26 @@
 <h2>Detalle del Vehículo</h2>
-<div *ngIf="undefined === product">Cargando...</div>
+<div *ngIf="undefined === product">
+  <mat-progress-spinner mode="indeterminate">
+  </mat-progress-spinner>
+</div>
 <div *ngIf="undefined !== product">
-  <h3>{{ product.data.brand }}</h3>
-  <h4>{{ product.data.year }}</h4>
-  <p><a [title]="' Editar este vehículo: ' + product.data.brand " [routerLink]="['/edit_vehicles', product.data.id,product.data.brand, product.data.year, product.data.plate ]">
-    {{ product.data.plate }}
-  </a></p>
-  
-  <button [routerLink]="['/vehicles']" (click)="deleteRegister(product.data.id)"> Eliminar </button>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title  [routerLink]="['/edit_vehicles', product.data.id,product.data.brand, product.data.year, product.data.plate ]" style="cursor: pointer;" > 
+      {{ product.data.brand }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ product.data.year }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://files.lamega.com.co/assets/public/styles/d_img_1200x630/public/2019-06/carro-parqueado_0.jpg?itok=rKlNGA2f" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+     Placa: {{ product.data.plate }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="['/vehicles']" (click)="deleteRegister(product.data.id)">Eliminar</button>
+    <button mat-button [title]="' Editar este vehículo: ' + product.data.brand " [routerLink]="['/edit_vehicles', product.data.id,product.data.brand, product.data.year, product.data.plate ]" >Editar</button>
+  </mat-card-actions>
+</mat-card>
 </div>

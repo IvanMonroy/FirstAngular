@@ -43,7 +43,9 @@ export class ProductDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar
 
-  ) { }
+  ) { 
+    document.title = 'Detalles';
+  }
 
   openSnackBar(message: string) {
     this._snackBar.openFromComponent(PizzaPartyComponent, {

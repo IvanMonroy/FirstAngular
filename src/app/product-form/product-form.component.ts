@@ -31,6 +31,7 @@ export class ProductFormComponent implements OnInit {
   restItemsUrl: any;
   messages: any;
   data: any;
+  dinamic_title: string;
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductFormService,
@@ -38,7 +39,10 @@ export class ProductFormComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-  ) { }
+  ) {
+    document.title = 'Formato de vehículo';
+
+   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

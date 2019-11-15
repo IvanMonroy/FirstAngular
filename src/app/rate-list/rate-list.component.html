@@ -1,0 +1,54 @@
+<h1>Tarifas Registradas</h1>
+<p>
+    <mat-form-field appearance="legacy">
+        <mat-label>Filtrar nombre</mat-label>
+        <input matInput [formControl]="filter" placeholder="Filter states..." autocomplete="off">
+    </mat-form-field>
+</p>
+<div *ngIf="undefined === ratesFiltered">
+    <mat-progress-spinner mode="indeterminate">
+    </mat-progress-spinner>
+</div>
+
+<mat-radio-group class="example-radio-group" (change)="onChange($event)" name="info">
+    <mat-radio-button class="example-radio-button" value="0"> Sin filtros </mat-radio-button>
+    <mat-radio-button class="example-radio-button" value="1"> Menores de 100 </mat-radio-button>
+    <mat-radio-button class="example-radio-button" value="2"> Mayores de 100 </mat-radio-button>
+</mat-radio-group>
+
+
+<div *ngIf="undefined !== ratesFiltered">
+    <div *ngFor="let rate of ratesFiltered | async">
+        <h3>
+            <a [title]="rate.value + ' details'" [routerLink]="['/rates', rate.id]">
+                {{ rate.value }}
+            </a>
+        </h3>
+
+        <p *ngIf="rate.name">
+            Nombre: {{ rate.name }}
+        </p>
+        <p *ngIf="rate.description">
+            Descripción: {{ rate.description }}
+        </p>
+        <p *ngIf="rate.description">
+            Vigente desde: {{ rate.date_begin }}
+        </p>
+        <p *ngIf="rate.description">
+            Vigente hasta: {{ rate.date_end }}
+        </p>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
